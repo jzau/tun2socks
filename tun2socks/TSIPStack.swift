@@ -82,6 +82,7 @@ public final class TSIPStack {
      Suspend the timer. The timer should be suspended when the device is going to sleep.
      */
     public func suspendTimer() {
+        timer?.cancel()
         timer = nil
     }
     
