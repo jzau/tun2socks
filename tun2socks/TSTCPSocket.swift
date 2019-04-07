@@ -246,9 +246,9 @@ public final class TSTCPSocket {
             var data = data
             var results = [Data]()
             while data.count > MaxLWIPTCPSize {
-                let subData = data.subdata(in: Range(0..<MaxLWIPTCPSize))
+                let subData = data.subdata(in: 0..<MaxLWIPTCPSize)
                 results.append(subData)
-                data = data.subdata(in: Range(MaxLWIPTCPSize..<data.count))
+                data = data.subdata(in: MaxLWIPTCPSize..<data.count)
             }
             
             if data.count > 0 {
@@ -262,7 +262,7 @@ public final class TSTCPSocket {
         else {
             pendingDataQueue.append(data)
             data.enumerateBytes { (buffer, index, end) in
-                
+
                 if buffer.baseAddress != nil && buffer.count > 0 {
                     pendingBufferQueue.append(buffer)
                 }
